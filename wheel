@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel Contest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wheel" id="wheel">
+            <div class="segment">Prize 1</div>
+            <div class="segment">Prize 2</div>
+            <div class="segment">Prize 3</div>
+            <div class="segment">Prize 4</div>
+            <div class="segment">Prize 5</div>
+            <div class="segment">Prize 6</div>
+        </div>
+        <button id="spin">Spin the Wheel</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.wheel {
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    border: 10px solid #333;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: #e74c3c;
+    border: 1px solid #333;
+    transform-origin: 100% 100%;
+}
+
+.segment:nth-child(1) { transform: rotate(0deg) translate(-100%, -100%); background: #f1c40f; }
+.segment:nth-child(2) { transform: rotate(60deg) translate(-100%, -100%); background: #2ecc71; }
+.segment:nth-child(3) { transform: rotate(120deg) translate(-100%, -100%); background: #3498db; }
+.segment:nth-child(4) { transform: rotate(180deg) translate(-100%, -100%); background: #9b59b6; }
+.segment:nth-child(5) { transform: rotate(240deg) translate(-100%, -100%); background: #e67e22; }
+.segment:nth-child(6) { transform: rotate(300deg) translate(-100%, -100%); background: #e74c3c; }
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+document.getElementById('spin').addEventListener('click', function() {
+    const wheel = document.getElementById('wheel');
+    const randomDegree = Math.floor(Math.random() * 3600) + 360; // Ensure multiple spins
+    wheel.style.transform = `rotate(${randomDegree}deg)`;
+});
